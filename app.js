@@ -18,16 +18,6 @@ const db = knex({
   },
 });
 
-const qb = knex({
-  client: "pg",
-  connection: {
-    host: "127.0.0.1",
-    user: "postgres",
-    password: "test",
-    database: "the-hams",
-  },
-});
-
 db.select("*")
   .from("users")
   .then((data) => console.log(data));
