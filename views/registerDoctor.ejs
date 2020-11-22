@@ -1,11 +1,51 @@
-<%- include ('header') %> 
-<% if (error) { %>
-  <div class="alert alert-danger m-5">
-    <center>
-      <strong><%= message %></strong>
-    </center>
-  </div>
-<% } %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Register As Doctor !</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Navbar</a>
+    
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <% if (error) { %>
+      <div class="alert alert-danger m-5">
+        <center>
+          <strong><%= message %></strong>
+        </center>
+      </div>
+    <% } %>
     <div class="container p-5 main">
       <div class="row">
         <div class="col-6">
@@ -23,13 +63,13 @@
             </div>
             <div class="col-6">
               <span>
-                Are you a Doctor? 
-                <a class="rhere" href="./registerDoctor">Register here</a>
+                Not a Doctor? 
+                <a class="rhere" href="./register">Register here</a>
               </span>
             </div>
           </div>
           <br>
-          <form action="/register-as-patient" method="post">
+          <form action="/register-as-doctor" method="post">
             <div class="form-group">
               <label for="name">Name:</label>
               <input
@@ -38,7 +78,6 @@
                 placeholder="Enter Name"
                 id="name"
                 name="name"
-                required
               />
             </div>
             <div class="form-group">
@@ -49,7 +88,6 @@
                 placeholder="Enter email"
                 id="email"
                 name="email"
-                required
               />
             </div>
             <div class="form-group">
@@ -61,7 +99,6 @@
                 id="phone"
                 name="phone"
                 maxlength="10"
-                required
               />
             </div>
             <div class="form-group">
@@ -72,7 +109,6 @@
                 placeholder="Enter password"
                 id="pwd"
                 name="password"
-                required
               />
             </div>
             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>

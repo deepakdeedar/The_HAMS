@@ -1,5 +1,10 @@
 const handleSignin = (req, res, db, bcrypt) => {
+
+        var d = new Date();
         const {password , email} = req.body;
+        if (!email || !password) {
+          return res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'incorrect form submission'});
+        }
         db.select('email', 'hash').from('login')
         .where('email', '=', email)
         .then(data => {
@@ -10,14 +15,14 @@ const handleSignin = (req, res, db, bcrypt) => {
             return db.select('*').from('users')
               .where('email', '=', email)
               .then(user => {
-                res.json(user[0])
+                res.json(user)
               })
-              .catch(err => res.status(400).json('unable to get user'))
+              .catch(err => res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'unable to get user'}))
           } else {
-            res.status(400).json('wrong credentials')
+            res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'Wrong Credentials'})
           }
         })
-        .catch(err => res.status(400).json('wrong credentials'))
+        .catch(err => res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'Wrong Credentials'}))
 }
 
 module.exports = {
