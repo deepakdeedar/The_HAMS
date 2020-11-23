@@ -2,7 +2,7 @@ const handlePatient = (req, res, db, bcrypt) => {
   var d = new Date();
   const { name, email, password, phone } = req.body;
   if (!email || !name || !password || !phone) {
-    return res.status(400).json('incorrect form submission');
+    return res.status(400).json("incorrect form submission");
   }
   const hash = bcrypt.hashSync(password);
   db.transaction((trx) => {
@@ -19,7 +19,7 @@ const handlePatient = (req, res, db, bcrypt) => {
           .insert({
             email: loginEmail[0],
             name: name,
-            phone: phone
+            phone: phone,
           })
           .then((user) => {
             res.json(user[0]);
@@ -27,9 +27,17 @@ const handlePatient = (req, res, db, bcrypt) => {
       })
       .then(trx.commit)
       .catch(trx.rollback);
-  }).catch((err) => res.status(400).render('registerDoctor', {year: d.getFullYear(), error: true, message: 'Unable to register.'}));
+  }).catch((err) =>
+    res
+      .status(400)
+      .render("registerDoctor", {
+        year: d.getFullYear(),
+        error: true,
+        message: "Unable to register.",
+      })
+  );
 };
 
 module.exports = {
-    handlePatient: handlePatient
-}
+  handlePatient: handlePatient,
+};

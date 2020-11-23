@@ -1,7 +1,7 @@
 const handleDoctor = (req, res, db, bcrypt) => {
     var d = new Date();
-    const { name, email, password, phone } = req.body;
-    if (!email || !name || !password || !phone) {
+    const { name, email, password, phone, special } = req.body;
+    if (!email || !name || !password || !phone || !special) {
       return res.status(400).json('incorrect form submission');
     }
     const hash = bcrypt.hashSync(password);
@@ -19,7 +19,8 @@ const handleDoctor = (req, res, db, bcrypt) => {
             .insert({
               email: loginEmail[0],
               name: name,
-              phone: phone
+              phone: phone,
+              special: special
             })
             .then((user) => {
               res.json(user[0]);

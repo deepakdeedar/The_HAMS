@@ -12,10 +12,10 @@ const handleSignin = (req, res, db, bcrypt) => {
           const isValid = bcrypt.compareSync(password, data[0].hash);
           console.log(isValid)
           if (isValid) {
-            return db.select('*').from('users')
-              .where('email', '=', email)
-              .then(user => {
-                res.json(user)
+            return db.select('*').from('doctors')
+              .then(doctor => {
+                console.log(doctor)
+                res.render("doctors", {doctor: doctor});
               })
               .catch(err => res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'unable to get user'}))
           } else {

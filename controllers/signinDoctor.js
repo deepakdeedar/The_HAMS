@@ -15,7 +15,7 @@ const handleSigninDoctor = (req, res, db, bcrypt) => {
         return db.select('*').from('doctors')
           .where('email', '=', email)
           .then(user => {
-            res.json(user[0])
+            res.render('update', {doctor: user[0]});
           })
           .catch(err => res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'unable to get user'}))
       } else {

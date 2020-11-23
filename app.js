@@ -7,6 +7,7 @@ const registerPatient = require("./controllers/registerPatient");
 const registerDoctor = require("./controllers/registerDoctor");
 const signin = require("./controllers/signin");
 const signinDoctor = require("./controllers/signinDoctor");
+const updateDoctor = require("./controllers/updateDoctor");
 
 const db = knex({
   client: "pg",
@@ -34,6 +35,7 @@ app.get("/register", (req, res) => {
   res.render("register", { year: d.getFullYear(), error:false });
 });
 
+
 app.get("/registerDoctor", (req, res) => {
   res.render("registerDoctor", { year: d.getFullYear(), error: false });
 });
@@ -60,6 +62,10 @@ app.post("/register-as-patient", (req, res) => {
 
 app.post("/register-as-doctor", (req, res) => {
   registerDoctor.handleDoctor(req, res, db, bcrypt);
+});
+
+app.post("/updateDoctor", (req, res) => {
+  updateDoctor.handleUpdateDoctor(req, res, db);
 });
 
 app.listen(3000, function () {

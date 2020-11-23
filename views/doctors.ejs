@@ -1,0 +1,25 @@
+
+<%- include ('header') %> 
+<div class="main">
+    <% if (doctor.length > 0) { %>
+     <% for( let i = 0; i < doctor.length; i++ ) { %>
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><%= doctor[i].name %> </h4>
+              <p class="card-text"><%= doctor[i].special %></p>
+              <p class="card-text">Total Appointments: <%= doctor[i].avail %></p>
+              <form action="" method="post">
+                  <% if (doctor[i].avail > 0) { %>
+                    <button type="submit" class="btn btn-primary">Book an Appointment</button>
+                  <% } else  { %>
+                    <button type="submit" class="btn btn-primary" disabled>Book an Appointment</button>
+                  <% } %>
+              </form>
+            </div>
+          </div>
+          <br>
+     <% } %>
+    <% } %>
+</div>
+</body>
+</html>

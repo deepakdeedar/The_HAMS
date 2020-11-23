@@ -22,3 +22,7 @@ label {
     text-decoration: none;
     color: lightgreen;
 }
+
+button {
+    cursor: pointer;
+}

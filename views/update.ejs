@@ -1,0 +1,18 @@
+<%- include ('header') %> 
+<div class="main">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><%= doctor.name %> </h4>
+              <p class="card-text"><%= doctor.special %></p>
+              <p class="card-text">Total Appointments: <%= doctor.avail %></p>
+              <form action="/updateDoctor" method="post">
+                <input type="number" name="avail" required>
+              <input type="email" name="email" value="<%= doctor.email %>" hidden>
+              <button type="submit" class="btn btn-success">Update</button>
+            </form>
+            </div>
+          </div>
+          <br>
+</div>
+</body>
+</html>
