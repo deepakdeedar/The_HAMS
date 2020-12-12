@@ -15,7 +15,7 @@ const handleSignin = (req, res, db, bcrypt) => {
             return db.select('*').from('doctors')
               .then(doctor => {
                 console.log(doctor)
-                res.render("doctors", {doctor: doctor});
+                res.render("f", {doctor: doctor});
               })
               .catch(err => res.status(400).render('signin', {year: d.getFullYear(), error: true, message: 'unable to get user'}))
           } else {

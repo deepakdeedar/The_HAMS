@@ -31,6 +31,10 @@ app.set("view engine", "ejs");
 
 var d = new Date();
 
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
 app.get("/register", (req, res) => {
   res.render("register", { year: d.getFullYear(), error:false });
 });
