@@ -32,25 +32,43 @@ app.set("view engine", "ejs");
 var d = new Date();
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {logedin: false, isdoctor: false, contact: "", about: "", book: "", home: "active"});
 });
 
 app.get("/register", (req, res) => {
-  res.render("register", { year: d.getFullYear(), error:false });
+  res.render("register", { year: d.getFullYear(), error:false, isdoctor: false, contact: "", about: "", book: "", home: "active" });
 });
 
 
 app.get("/registerDoctor", (req, res) => {
-  res.render("registerDoctor", { year: d.getFullYear(), error: false });
+  res.render("registerDoctor", { year: d.getFullYear(), error: false, isdoctor: false, contact: "", about: "", book: "", home: "active" });
 });
 
 app.get("/signin", (req, res) => {
-  res.render("signin", { year: d.getFullYear(), error: false});
+  res.render("signin", { year: d.getFullYear(), error: false, isdoctor: false, contact: "", about: "", book: "", home: "active"});
 });
 
 app.get("/signinDoctor", (req, res) => {
-  res.render("signinDoctor", { year: d.getFullYear(), error: false});
+  res.render("signinDoctor", { year: d.getFullYear(), error: false, isdoctor: false, contact: "", about: "", book: "", home: "active"});
 });
+
+var doctor;
+db.select('*').from('doctors').then(data => {
+  doctor = data;
+});
+console.log(doctor)
+
+app.get("/doctor-list", (req, res) => {
+  res.render("doctors", {doctor: doctor, isdoctor: false, contact: "", about: "", book: "active", home: ""})
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", {logedin: false, isdoctor: false, contact: "", about: "active", book: "", home: ""})
+})
+
+app.get("/contact", (req, res) => {
+  res.render("contact", {logedin: false, isdoctor: false, contact: "active", about: "", book: "", home: ""})
+})
 
 app.post("/signin", (req, res) => {
   signin.handleSignin(req, res, db, bcrypt);

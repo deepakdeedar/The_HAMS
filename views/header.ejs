@@ -23,10 +23,18 @@
                 data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1" style="width: 820px;margin-left: 0px;margin-right: -141px;">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="features.html">Book Appointment</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="about-us.html">About Us</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link <%=home%>" href="/">Home</a></li>
+                    <% if (isdoctor) { %>
+                        <form action="/updateDoctor" method="post">
+                            <input type="text" value="<%=doctor.email%>" name="email" hidden>
+                            <input type="number" value="<%=doctor.avail%>" name="avail" hidden>
+                            <li class="nav-item" role="presentation"><button type="submit" class="nav-link" >Update Appointment</button></li>
+                        </form>
+                    <% } else { %>  
+                        <li class="nav-item" role="presentation"><a class="nav-link <%=book%>" href="/doctor-list">Book Appointment</a></li>
+                    <% } %> 
+                    <li class="nav-item" role="presentation"><a class="nav-link <%=about%>" href="/about">About Us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link <%=contact%>" href="/contact" >Contact Us</a></li>
                 </ul>
             </div>
         </div>

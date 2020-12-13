@@ -22,7 +22,7 @@ const handlePatient = (req, res, db, bcrypt) => {
             phone: phone,
           })
           .then((user) => {
-            res.json(user[0]);
+            res.render("home", {user: user, logedin: true, isdoctor: false, contact: "", about: "", book: "", home: "active", greet: "Welcome, " + user[0].name });
           });
       })
       .then(trx.commit)
@@ -34,6 +34,7 @@ const handlePatient = (req, res, db, bcrypt) => {
         year: d.getFullYear(),
         error: true,
         message: "Unable to register.",
+        contact: "", about: "", book: "", home: "active", isdoctor: false
       })
   );
 };

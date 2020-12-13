@@ -1,47 +1,22 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home - Brand</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
-    <link rel="stylesheet" href="fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="fonts/simple-line-icons.min.css">
-    <link rel="stylesheet" href="fonts/typicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
-    <link rel="stylesheet" href="css/smoothproducts.css">
-    <link rel="stylesheet" href="css/untitled.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white jello animated clean-navbar" style="width: 1551.6px;height: 100px;margin-top: 0px;">
-        <div class="container"><a class="navbar-brand logo" href="#"><img src="images/logo_transparent.png" class="pulse animated infinite mt-1 rounded" style="width: 138px;height: 120px;margin: -18px;padding: 4px;margin-left: -200px;"></a><button class="navbar-toggler" data-toggle="collapse"
-                data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1" style="width: 820px;margin-left: 0px;margin-right: -141px;">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="index.html">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="features.html">Book Appointment</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="about-us.html">About Us</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<%- include('header') %> 
     <main class="page landing-page">
         <section class="rubberBand animated clean-block clean-hero" style="background-image: url(&quot;covid-19-banner-template_23-2148487664.jpg&quot;);color: rgba(9, 162, 255, 0.75);">
             <div class="text">
                 <h2 style="font-size: 22px;color: rgb(50,55,58);"><br>"Being on time to appointments and meetings is a phase of self-discipline and an evidence of self-respect. Punctuality is a courteous compliment the intelligent person pays to his associates."&nbsp;<br><br></h2>
                 <p style="margin-top: -48px;color: rgb(50,55,58);"><br>~ Marvin J. Ashton<br><br></p>
-                <form method="GET" action="/register">
-                    <button class="btn btn-outline-light btn-lg" type="submit" style="margin: 31px;margin-top: 31px;">REGISTER</button>
-                </form>
-                <form method="GET" action="/signin">
-                    <button class="btn btn-outline-light btn-lg" type="submit" style="margin: 0px;">SIGN IN</button>
-                </form>
+                <% if (logedin) { %>
+                    <h1 style="font-size: 22px;color: rgb(248, 250, 252); font-weight: bold;"><br><%= greet %> </h1>
+                    <form method="GET" action="/doctor-list">
+                        <button class="btn btn-outline-light btn-lg" type="submit" style="margin: 0px;">GET STARTED</button>
+                    </form> 
+                <% } else { %> 
+                    <form method="GET" action="/register">
+                        <button class="btn btn-outline-light btn-lg" type="submit" style="margin: 31px;margin-top: 31px;">REGISTER</button>
+                    </form>
+                    <form method="GET" action="/signin">
+                        <button class="btn btn-outline-light btn-lg" type="submit" style="margin: 0px;">SIGN IN</button>
+                    </form>
+                <% } %> 
             </div>
         </section>
         <section class="clean-block clean-info dark">
