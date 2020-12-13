@@ -30,7 +30,7 @@ const handlePatient = (req, res, db, bcrypt) => {
   }).catch((err) =>
     res
       .status(400)
-      .render("registerDoctor", {
+      .render("registerPatient", {
         year: d.getFullYear(),
         error: true,
         message: "Unable to register.",
